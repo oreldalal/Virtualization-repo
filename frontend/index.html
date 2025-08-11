@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="UTF-8" />
+  <title>איטליה</title>
+  <style>
+    body {
+      background: linear-gradient(135deg, #ffdb99, #c72c41);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #fff;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-top: 20px;
+      text-shadow: 2px 2px 4px #000;
+    }
+
+    button {
+      background-color: #008000; /* ירוק איטלקי */
+      border: none;
+      padding: 15px 30px;
+      font-size: 1.2rem;
+      color: white;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #005900;
+    }
+
+    #message {
+      background-color: rgba(0,0,0,0.3);
+      padding: 20px;
+      border-radius: 15px;
+      max-width: 500px;
+      font-size: 1.3rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    }
+
+    img {
+      max-width: 400px;
+      width: 90vw;
+      border-radius: 20px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.5);
+    }
+
+    footer {
+      margin-top: auto;
+      padding: 10px;
+      font-size: 0.9rem;
+      color: #eee;
+      text-shadow: 1px 1px 2px #000;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>!ברוכים הבאים לאיטליה</h1>
+
+  <img src="https://www.metailimbaolam.com/wp-content/uploads/2018/08/%D7%9B%D7%A8%D7%98%D7%99%D7%A1%D7%99%D7%9D-%D7%9C%D7%A7%D7%95%D7%9C%D7%95%D7%A1%D7%99%D7%90%D7%95%D7%9D-%D7%A8%D7%95%D7%9E%D7%90-2018-%D7%94%D7%9E%D7%93%D7%A8%D7%99%D7%9A-%D7%94%D7%98%D7%95%D7%91-%D7%91%D7%99%D7%95%D7%AA%D7%A8-%D7%91%D7%A8%D7%A9%D7%AA.jpg" alt="הקולוסיאום ברומא" />
+
+  <button id="getMessageBtn">קבל מידע נוסף</button>
+
+  <p id="message"></p>
+
+  <script>
+    document.getElementById('getMessageBtn').onclick = () => {
+      fetch('http://localhost:3000/api/message')
+        .then(response => response.json())
+        .then(data => {
+          document.getElementById('message').innerText = data.message;
+        })
+        .catch(err => {
+          document.getElementById('message').innerText = 'שגיאה בטעינת ההודעה';
+          console.error(err);
+        });
+    }
+  </script>
+</body>
+</html>
+
