@@ -30,6 +30,17 @@ services:
     ports:
       - "8080:80"
 
+  nginx-proxy:
+    image: nginx:latest
+    container_name: nginx-proxy
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d:ro
+    depends_on:
+      - frontend
+      - backend
+
 volumes:
   postgres_data:
 
